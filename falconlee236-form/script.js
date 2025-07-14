@@ -1,5 +1,6 @@
 // dom 가져오기
 const form = document.getElementById("form");
+const input = document.querySelectorAll(".input");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -84,11 +85,34 @@ function getFieldName(input) {
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (checkRequired([username, email, password, password2])) {
-        checkLength(username, 3, 15);
-        checkLength(password, 6, 25);
-        checkInput(username);
-        checkEmail(email);
-        checkPasswordsMatch(password, password2);
-    }
+    checkInput(username);
+    checkEmail(email);
+    checkPasswordsMatch(password, password2);
+});
+
+// 실시간 유효성 체크로 변경해보기
+input.forEach((field) => {
+    field.addEventListener("input", () => {
+        switch (field.id) {
+            case "username":
+                checkRequired([field]);
+                checkInput(field);
+                checkLength(field, 3, 15);
+                break;
+            case "email":
+                checkRequired([field]);
+                checkEmail(field);
+                break;
+            case "password":
+                checkRequired([field]);
+                checkLength(field, 6, 25);
+                break;
+            case "password2":
+                checkRequired([field]);
+                checkPasswordsMatch(password, password2);
+                break;
+            default:
+                break;
+        }
+    });
 });
