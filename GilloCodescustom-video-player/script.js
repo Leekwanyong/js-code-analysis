@@ -31,13 +31,13 @@ function updateProgress() {
 
     // 시간 분
     let mins = Math.floor(video.currentTime / 60);
-    if (mins < video.duration) {
+    if (mins < 10) {
         mins = "0" + String(mins);
     }
 
     // 시간 초
     let secs = Math.floor(video.currentTime % 60);
-    if (secs < video.duration) {
+    if (secs < 10) {
         secs = "0" + String(secs);
     }
     // 현재 재생 위치를 mm:ss 형식으로 표시
