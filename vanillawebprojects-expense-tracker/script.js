@@ -34,7 +34,6 @@ function addTransaction(e) {
         alert("Please add a text and amount");
     } else if (isTextTooLong) {
         alert("텍스트와 금액은 최대 20자까지 입력할 수 있습니다.");
-        return;
     } else {
         const transaction = {
             id: generateID(),
